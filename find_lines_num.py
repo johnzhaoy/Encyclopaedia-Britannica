@@ -2,11 +2,11 @@ import os
 
 dirs = os.listdir(r'./alto')
 
+# find each file in the folder
 for file_path in dirs:
     count = 0
-    # print("file: ", file_path)
     file_path2 = './alto/' + file_path
-    # print(file_path2)
+
     with open(file_path2, encoding='UTF-8')as f:
         a = f.read()
     f.close()
