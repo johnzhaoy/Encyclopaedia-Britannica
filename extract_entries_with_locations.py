@@ -4,7 +4,7 @@ import os
 
 
 def read_file():
-    f = open("./nls-text-encyclopaediaBritannica/193916150.txt", "r")
+    f = open(r"F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Data\Raw\nls-text-encyclopaediaBritannica\193819047.txt", "r", encoding='UTF-8')
     a = f.read()
     f.close()
     return a
