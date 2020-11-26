@@ -5,6 +5,7 @@ import pycountry
 import pycountry_convert as pc
 
 path = r"F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Data\Test"
+# test
 files = []
 for root, dirnames, filenames in os.walk(path):
     for filename in fnmatch.filter(filenames, '*.txt'):
