@@ -16,4 +16,3 @@ list = [ed1.shape[0],ed2.shape[0],ed3.shape[0],ed4.shape[0],ed5.shape[0],ed6.sha
 data = {'edition':[1,2,3,4,5,6,7,8],'vol_num':list}
 df_edvol = df_edvol = pd.DataFrame(data)
 df_edvol
-
