@@ -12,7 +12,7 @@ def read_file():
 
 
 a = read_file()
-b = a.split("\n")
+b = a.split(".\n")  # split the txt into entries
 
 '''
 process the txt with spaCy, 
@@ -29,12 +29,9 @@ to download en_core_web_sm
 
 # process the txt with GeoText
 for line in b:
-    words = line.split(" ")
-    for word in words:
-        if (word.isupper() is True) and (len(word)>3 and word != 'VIII.'):
-            # I wanna make it doesn't include rome numbers but cannot find a better way
-            print('---------')
-            print(word)
+    print()
+    print("Entry: ", line)
     places = GeoText(line)
     if len(places.cities) != 0:
-        print(places.cities)
+        # print(places.cities)
+        print("----------------------------Country: ", ",".join(str(x) for x in places.cities))
