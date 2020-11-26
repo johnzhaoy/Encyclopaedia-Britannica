@@ -1,6 +1,5 @@
-import spacy
 from geotext import GeoText
-import os
+import pandas as pd
 
 
 def read_file():
@@ -14,24 +13,17 @@ def read_file():
 a = read_file()
 b = a.split(".\n")  # split the txt into entries
 
-'''
-process the txt with spaCy, 
-use: python3 -m spacy download en_core_web_sm 
-to download en_core_web_sm
-
-'''
-# nlp = spacy.load("en_core_web_sm")
-# for line in b:
-#     doc = nlp(line)
-#     for ent in doc.ents:
-#         print(ent.text)
+entrylist = []
+countrylist = []
 
 
-# process the txt with GeoText
-for line in b:
-    print()
-    print("Entry: ", line)
-    places = GeoText(line)
-    if len(places.cities) != 0:
-        # print(places.cities)
-        print("----------------------------Country: ", ",".join(str(x) for x in places.cities))
+def processdata(txt):
+    for line in txt:
+        entrylist.append(line.replace('\n', ' '))
+        places = GeoText(line)
+        countrylist.append(",".join(str(x) for x in places.cities))
+
+
+processdata(b)
+dic = {'Entry': entrylist, 'Country': countrylist}
+print(pd.DataFrame(dic))
