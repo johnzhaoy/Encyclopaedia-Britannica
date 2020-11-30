@@ -53,8 +53,6 @@ dic1 = pd.DataFrame(dic)
 
 country_list_full = [[] for i in range(len(country_code_list))]
 continent_list_full = [[] for i in range(len(country_code_list))]
-print(len(country_code_list))
-print(country_code_list)
 
 for i in range(len(country_code_list)):
     country_code = country_code_list[i]
@@ -86,6 +84,38 @@ for i in range(len(country_code_list)):
 
 
 dic1['Edition'] = 1
+for i in range(len(country_list_full)):
+    country_list_full[i] = ','.join(country_list_full[i])
+    continent_list_full[i] = ','.join(continent_list_full[i])
 dic1['Country'] = country_list_full
 dic1['Continent'] = continent_list_full
+
+asia = pd.DataFrame(dic1[dic1['Continent'].str.contains('Asia')])
+print(asia.head())
+
+europe = pd.DataFrame(dic1[dic1['Continent'].str.contains('Europe')])
+print(asia.head())
+
+north_america = pd.DataFrame(dic1[dic1['Continent'].str.contains('North America')])
+print(asia.head())
+
+south_america = pd.DataFrame(dic1[dic1['Continent'].str.contains('South America')])
+print(asia.head())
+
+africa = pd.DataFrame(dic1[dic1['Continent'].str.contains('Africa')])
+print(asia.head())
+
+antarctica = pd.DataFrame(dic1[dic1['Continent'].str.contains('Antarctica')])
+print(asia.head())
+
+oceania = pd.DataFrame(dic1[dic1['Continent'].str.contains('Oceania')])
+print(asia.head())
+#
 dic1.to_csv("output.csv",index=False)
+asia.to_csv("asia.csv",index=False)
+europe.to_csv("europe.csv",index=False)
+north_america.to_csv("north_america.csv",index=False)
+south_america.to_csv("south_america.csv",index=False)
+africa.to_csv("africa.csv",index=False)
+oceania.to_csv("oceania.csv",index=False)
+antarctica.to_csv("antarctica.csv",index=False)
