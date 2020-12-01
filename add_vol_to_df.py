@@ -15,7 +15,7 @@ def read_file():
         f = open(fp1, encoding='utf-8')
         a = f.read()
         f.close()
-        return a
+        return a   # 云哥是不是这个缩进错了啊，现在这样的话好像只读了第一个文件
 
 def processdata(txt):
     for line in txt:
