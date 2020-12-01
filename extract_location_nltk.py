@@ -15,7 +15,7 @@ def extract_entity_names(t):
 
     return entity_names
 
-#
+# open file
 with open('./nls-text-encyclopaediaBritannica/193916150.txt', 'r') as f:
     for line in f:
         sentences = nltk.sent_tokenize(line)
