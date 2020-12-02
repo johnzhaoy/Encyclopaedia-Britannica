@@ -4,23 +4,23 @@ import pandas as pd
 
 # path = r'/Users/wanfangdu/Desktop/DS4D/projectgit/extracted/edition'
 path = r'F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Coding\Encyclopaedia-Britannica\extracted\edition'
-output_dir = r'/continent-related content/longest'
+output_dir = r'F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Coding\Encyclopaedia-Britannica\continent-related content\most_mentioned_countries'
 edition_list = []
 continent_list = []
-entry_list = []
-dic = {'Edition': edition_list, 'Continent': continent_list, 'Entry': entry_list}
+country_list = []
+dic = {'Edition': edition_list, 'Continent': continent_list, 'Country': country_list}
 df = pd.DataFrame(dic)
 
 def find_max_explain(file, edition_num, continent):
     data = pd.read_csv(file)
     # print(data.head())
     explain = data['Entry'].tolist()
-    # print(explan)
+    print(explain)
     if len(explain) != 0:
         longest = heapq.nlargest(1, explain, key=len)
         edition_list.append(edition_num)
         continent_list.append(continent)
-        entry_list.append(longest[0])
+        country_list.append(longest[0])
 
         # print("longest start")
         # print(type(longest))
@@ -54,12 +54,12 @@ for i in range(1,9):
 
 df['Edition'] = edition_list
 df['Continent'] = continent_list
-df['Entry'] = entry_list
+df['Entry'] = country_list
 
 
-dirName = output_dir
-if not os.path.exists(dirName):
-    os.makedirs(dirName)
-dirName = dirName + "\\"
+# dirName = output_dir
+# if not os.path.exists(dirName):
+#     os.makedirs(dirName)
+# dirName = dirName + "\\"
 
-df.to_csv(dirName + "longest.csv", index=False)
+# df.to_csv(dirName + "longest.csv", index=False)
