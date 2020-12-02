@@ -15,7 +15,7 @@ def read_file():
         f = open(fp1, encoding='utf-8')
         a = f.read()
         f.close()
-        return a
+    return a
 
 def processdata(txt):
     for line in txt:
