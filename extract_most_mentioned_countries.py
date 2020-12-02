@@ -70,7 +70,7 @@ def find_most_mentioned_countries(file, edition_num, continent):
 
     name = ['Country', 'Frequency']
     df = pd.DataFrame(columns=name, data=different_country_dictionary_list)  # 数据有三列，列名分别为one,two,three
-
+    df = df.sort_values(by='Frequency', ascending=False)
     edition = "edition"+edition_num
     dirName = output_dir + "\\" + edition
     if not os.path.exists(dirName):
