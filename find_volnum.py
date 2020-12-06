@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-%matplotlib inline
 # the invenroty file gives a glance of all '.txt' files
 df_inventory = pd.read_csv("encyclopaediaBritannica-inventory.csv", header=None)
 df_inventory.columns = ['file_name','information']
