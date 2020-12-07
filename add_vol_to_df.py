@@ -5,24 +5,30 @@ import pycountry, pycountry_convert as pc
 import fnmatch
 
 
-path = r'F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Data\Raw\nls-text-encyclopaediaBritannica'
+path = r'F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Coding\Encyclopaedia-Britannica\data'
 output_dir = r'F:\Edin\1_1\Data Science for Design\Encyclopedia Britannica\Coding\Encyclopaedia-Britannica\extracted'
 
-def read_file():
-    dirs = os.listdir(path)
+def read_file(edition_num):
+    edition_num = str(edition_num)
+    route = path+"\\"+"edition"+edition_num
+    dirs = os.listdir(route)
     for file in dirs:
-        fp1 = path +'\\'+ file
+        fp1 = route +'\\'+ file
         f = open(fp1, encoding='utf-8')
         a = f.read()
         f.close()
-    return a
+        return a
 
 def processdata(txt):
     for line in txt:
         entrylist.append(line.replace('\n', ' '))
         places = GeoText(line)
-        citylist.append(", ".join(str(x) for x in places.cities))
-        country_code_list.append(",".join(str(x) for x in places.country_mentions.keys()))
+        if ("Of" not in places.cities):
+            citylist.append(", ".join(str(x) for x in places.cities))
+            country_code_list.append(",".join(str(x) for x in places.country_mentions.keys()))
+        else:
+            citylist.append('N/A')
+            country_code_list.append('N/A')
 
 
 def country_to_continent(country_name):
@@ -35,12 +41,13 @@ def country_to_continent(country_name):
 for edition_num in range(1,9):
     files = []
     edition = "edition" + str(edition_num)
-    path = path + "\\" + edition
-    for root, dirnames, filenames in os.walk(path):
+    path_temp = path + "\\" + edition
+    for root, dirnames, filenames in os.walk(path_temp):
         for filename in fnmatch.filter(filenames, '*.txt'):
             files.append(os.path.join(root, filename))
-    print("found %d .txt files in %s" % (len(files), path))
-    a = read_file()
+    print("found %d .txt files in %s" % (len(files), path_temp))
+
+    a = read_file(edition_num)
 
     b = a.split(".\n")  # split the txt into entries
 
@@ -118,5 +125,5 @@ for edition_num in range(1,9):
     oceania.to_csv(dirName + "oceania.csv",index=False)
     antarctica.to_csv(dirName + "antarctica.csv",index=False)
 
-    path = path.split(edition, 1)[0]
+    # path = path.split(edition, 1)[0]
 
